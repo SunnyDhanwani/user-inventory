@@ -13,12 +13,7 @@ code {
     monospace;
 }
 
-.navbar-container {
-  background-color: rgba(30, 30, 30, 0.8);
-  padding: 32px 90px;
-  display: flex;
-  justify-content: space-between;
-}
+
 
 .text-white {
   color: white;
