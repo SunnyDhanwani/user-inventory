@@ -7,6 +7,7 @@ import {
 import { UserDetail } from "../interfaces/interfaces";
 import UserCard from "./UserCard";
 import UsersEmptyState from "./UsersEmptyState";
+import "./../styles/UserCard.scss";
 
 const AllUsersList = ({
   handleViewUser,
@@ -48,15 +49,7 @@ const AllUsersList = ({
 
   if (users?.length === 0) return <UsersEmptyState />;
   return (
-    <div
-      style={{
-        marginTop: "36px",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        padding: "20px 90px",
-        gap: "20px",
-      }}
-    >
+    <div className="users-grid">
       {users?.length ? (
         users.map((user) => {
           return (

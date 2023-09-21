@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import UserModal from "./components/UserModal";
 import AllUsersList from "./components/AllUsersList";
 import { getGlobalItem, setGlobalItem } from "./utils/helper";
 import PaginationBar from "./components/PaginationBar";
+import "./styles/App.scss";
 
 function App() {
   const [modalDetails, setModalDetails] = useState({
@@ -25,7 +26,7 @@ function App() {
     });
   };
 
-  const handleUserModalOpen = (id: any, isView: boolean = false) => {
+  const handleUserModalOpen = (id: any = "", isView: boolean = false) => {
     if (id) {
       const allUsers = getGlobalItem("allUsersData");
       const user = allUsers.find((el: any) => {
@@ -101,7 +102,7 @@ function App() {
   // }, []);
 
   return (
-    <div className="App">
+    <div className="App parent-container">
       <UserModal
         isOpen={modalDetails.isOpen}
         handleModalClose={handleUserModalClose}
@@ -111,21 +112,11 @@ function App() {
 
       <Navbar />
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "20px 90px",
-        }}
-      >
-        <div style={{ fontSize: "28px" }}>LIST OF USERS</div>
-        <button onClick={handleUserModalOpen} className="blue-btn">
+      <div className="landing-page-header">
+        <div>LIST OF USERS</div>
+        <button onClick={() => handleUserModalOpen()} className="blue-btn">
           ADD USER
         </button>
-      </div>
-
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div></div>
       </div>
 
       <AllUsersList
@@ -137,13 +128,15 @@ function App() {
         setLimit={setLimit}
       />
 
-      <PaginationBar
-        page={page}
-        limit={limit}
-        total={total}
-        setLimit={setLimit}
-        setPage={setPage}
-      />
+      {total > 0 && (
+        <PaginationBar
+          page={page}
+          limit={limit}
+          total={total}
+          setLimit={setLimit}
+          setPage={setPage}
+        />
+      )}
     </div>
   );
 }

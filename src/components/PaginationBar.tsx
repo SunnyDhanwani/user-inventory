@@ -1,4 +1,4 @@
-import React from "react";
+import "../styles/Pagination.scss";
 
 const PaginationBar = (props: any) => {
   const handlePreviousPage = () => {
@@ -8,15 +8,8 @@ const PaginationBar = (props: any) => {
     props.setPage((prev: any) => +prev + 1);
   };
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "12px",
-      }}
-    >
-      <div style={{ display: "flex", gap: "24px" }}>
+    <div className="pagination-container">
+      <div className="pagination-controls">
         <button onClick={handlePreviousPage} disabled={props.page === 1}>
           Prev
         </button>

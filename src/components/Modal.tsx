@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ModalProps } from "../interfaces/interfaces";
+import "./../styles/Modal.scss";
 
 const Modal = ({ isModalOpen, handleModalClose, children }: ModalProps) => {
   const modalRef = useRef<HTMLDialogElement>(null);
@@ -15,12 +16,6 @@ const Modal = ({ isModalOpen, handleModalClose, children }: ModalProps) => {
       ref={modalRef}
       onCancel={(e) => {
         handleModalClose(e);
-      }}
-      style={{
-        // top: "50%",
-        // left: "50%",
-        // translate: "-50% -50%",
-        position: "fixed",
       }}
       className="modal"
     >

@@ -1,0 +1,13 @@
+@import "./variables.scss";
+
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 24px;
+}

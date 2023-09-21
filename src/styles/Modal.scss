@@ -1,0 +1,9 @@
+@import "./variables.scss";
+
+.modal {
+  border-radius: 10px;
+}
+
+::backdrop {
+  background-color: $black-70;
+}

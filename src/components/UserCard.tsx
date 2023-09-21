@@ -1,5 +1,5 @@
-import React from "react";
 import { UserCardProps, UserDetail } from "../interfaces/interfaces";
+import "./../styles/UserCard.scss";
 
 const UserCard = ({
   username,
@@ -15,91 +15,44 @@ const UserCard = ({
   handleEditUser,
 }: UserDetail & UserCardProps) => {
   return (
-    <div
-      className="user-card"
-      //   style={{
-      //     border: "1px solid black",
-      //     borderRadius: "10px",
-      //     maxWidth: "360px",
-      //     boxShadow: "2px 6px 4px 0px rgba(0, 0, 0, 0.25)",
-      //   }}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "20px 30px",
-          borderBottom: "1px solid black",
-        }}
-      >
+    <div className="user-card">
+      <div className="user-card-header">
+        <div className="ellipsis">{username}</div>
         <div
+          className="circle-30"
           style={{
-            maxWidth: "70%",
-          }}
-          className="ellipsis"
-        >
-          {username}
-        </div>
-        <div
-          style={{
-            height: "30px",
-            width: "30px",
             backgroundColor:
               +age >= 0 && +age < 25
                 ? "#1A7318"
                 : +age >= 25 && +age < 50
                 ? "#F41B9E"
                 : "#FEA41D",
-            borderRadius: "100%",
           }}
         ></div>
       </div>
 
-      <div
-        style={{
-          padding: "20px 30px",
-          borderBottom: "1px solid black",
-        }}
-      >
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 2fr",
-            // gridTemplateRows: 4,
-            gap: "20px",
-            textAlign: "left",
-          }}
-        >
-          <div>Age</div>
-          <div>{age}</div>
-          <div>DOB</div>
-          <div>{dob.toString()}</div>
-          <div>Gender</div>
-          <div>{gender}</div>
-          <div>Food</div>
-          <div>{food}</div>
-          <div>Hobbies</div>
-          <div className="ellipsis">{hobbies || "-"}</div>
-        </div>
+      <div className="user-card-body">
+        <div>Age</div>
+        <div className="value">{age}</div>
+        <div>DOB</div>
+        <div className="value">{dob.toString()}</div>
+        <div>Gender</div>
+        <div className="value">{gender}</div>
+        <div>Food</div>
+        <div className="value">{food}</div>
+        <div>Hobbies</div>
+        <div className="ellipsis value">{hobbies || "-"}</div>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          padding: "20px 30px",
-        }}
-      >
+      <div className="user-card-footer">
         <button className="orange-btn" onClick={() => handleDeleteUser(id)}>
-          Delete
+          DELETE
         </button>
         <button className="blue-btn" onClick={() => handleViewUser(id)}>
-          View
+          VIEW
         </button>
         <button className="blue-btn" onClick={() => handleEditUser(id)}>
-          Edit
+          EDIT
         </button>
       </div>
     </div>

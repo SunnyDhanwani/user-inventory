@@ -1,0 +1,37 @@
+@import "./variables.scss";
+
+.parent-container {
+  padding: 0px 0px 48px;
+}
+
+.landing-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 36px 24px;
+  font-weight: 700;
+}
+
+.landing-page-header > div {
+  font-size: 24px !important;
+}
+
+@media (min-width: $breakpoint-tablet) {
+  .landing-page-header {
+    padding: 48px 56px;
+  }
+
+  .landing-page-header > div {
+    font-size: 28px !important;
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .landing-page-header {
+    padding: 54px 90px;
+  }
+
+  .landing-page-header > div {
+    font-size: 28px !important;
+  }
+}
