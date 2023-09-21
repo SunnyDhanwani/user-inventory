@@ -8,34 +8,10 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.custom-input {
-  outline: none;
-  padding: 12px 20px;
-  /* width: 100%; */
-  max-width: 400px;
-  border-radius: 8px;
-  font-size: 18px;
-  border-color: rgba(195, 193, 193, 0.5);
-}
-
-.custom-input:focus {
-  border-color: rgb(0, 0, 0);
-}
-
-.custom-input:disabled {
-  cursor: not-allowed;
-  opacity: 0.40;
 }
 
 .orange-btn, .blue-btn {
@@ -66,12 +42,4 @@ code {
 
 .blue-btn:hover {
   box-shadow: 1px 3px 4px 0px rgba(8, 45, 97, 0.626);
-}
-
-.red {
-  color: red;
-}
-
-.invisible {
-  visibility: hidden;
 }

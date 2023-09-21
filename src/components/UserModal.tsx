@@ -7,6 +7,7 @@ import {
   uniqueID,
 } from "../utils/helper";
 import { UserDetail, UserModalProps } from "../interfaces/interfaces";
+import "./../styles/UserModal.scss";
 
 const UserModal = ({
   isOpen,
@@ -84,40 +85,13 @@ const UserModal = ({
 
   return (
     <Modal isModalOpen={isOpen} handleModalClose={handleModalClose}>
-      <div
-        style={{
-          padding: "36px 36px 18px 36px",
-          width: "50vw",
-          height: "70vh",
-          overflow: "auto",
-        }}
-      >
-        <div style={{ fontSize: "40px", marginBottom: "36px" }}>ADD USER</div>
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                alignItems: "start",
-                width: "40%",
-              }}
-            >
+      <div className="modal-parent-container">
+        <div className="modal-header">
+          {isView ? "VIEW" : userDetails?.id ? "EDIT" : "ADD"} USER
+        </div>
+        <form onSubmit={handleSubmit} className="form-container">
+          <div className="form-row">
+            <div className="form-input-group">
               <label htmlFor="username">
                 NAME
                 <sup className="red">*</sup>
@@ -134,15 +108,7 @@ const UserModal = ({
               />
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                alignItems: "start",
-                width: "40%",
-              }}
-            >
+            <div className="form-input-group">
               <label htmlFor="age">
                 AGE<sup className="red invisible">*</sup>
               </label>
@@ -157,22 +123,8 @@ const UserModal = ({
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                alignItems: "start",
-                width: "40%",
-              }}
-            >
+          <div className="form-row">
+            <div className="form-input-group">
               <label htmlFor="dob">
                 DOB<sup className="red">*</sup>
               </label>
@@ -190,19 +142,11 @@ const UserModal = ({
               />
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                alignItems: "start",
-                width: "40%",
-              }}
-            >
+            <div className="form-input-group">
               <label htmlFor="gender">
                 GENDER<sup className="red">*</sup>
               </label>
-              <div style={{ display: "flex", gap: "30px" }}>
+              <div className="gender-container">
                 <div>
                   <input
                     id="male"
@@ -237,22 +181,8 @@ const UserModal = ({
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                alignItems: "start",
-                width: "40%",
-              }}
-            >
+          <div className="form-row">
+            <div className="form-input-group">
               <label htmlFor="username">
                 FAVOURITE FOOD<sup className="red">*</sup>
               </label>
@@ -275,15 +205,7 @@ const UserModal = ({
               </select>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: "6px",
-                alignItems: "start",
-                width: "40%",
-              }}
-            >
+            <div className="form-input-group">
               <label htmlFor="hobbies">
                 HOBBIES<sup className="red invisible">*</sup>
               </label>
@@ -300,16 +222,7 @@ const UserModal = ({
             </div>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "end",
-              gap: "24px",
-              position: "absolute",
-              bottom: "24px",
-              right: "24px",
-            }}
-          >
+          <div className="form-footer">
             {isView ? (
               <button
                 type="button"
