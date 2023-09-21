@@ -1,8 +1,8 @@
 @import "./variables.scss";
 
 .modal-parent-container {
-  padding: 36px 36px 0px 36px;
-  width: 60vw;
+  padding: 36px 0px 0px 0px;
+  width: 80vw;
   height: 80vh;
   overflow: "auto";
 }
@@ -81,11 +81,13 @@
   position: relative;
   bottom: 24px;
   right: 24px;
+  margin: auto;
   margin-top: 24px;
 }
 
 @media (min-width: $breakpoint-tablet) {
   .modal-parent-container {
+    padding: 36px 36px 0px 36px;
     width: 70vw;
     height: 70vh;
     overflow: auto;
@@ -113,8 +115,9 @@
 
 @media (min-width: $breakpoint-desktop) {
   .modal-parent-container {
+    padding: 36px 36px 100px 36px;
     width: 50vw;
-    height: 70vh;
+    height: 75vh;
     overflow: auto;
   }
 
