@@ -8,15 +8,28 @@ import { UserDetail } from "../interfaces/interfaces";
 import UserCard from "./UserCard";
 import UsersEmptyState from "./UsersEmptyState";
 
-const AllUsersList = ({ handleViewUser, handleEditUser }: any) => {
+const AllUsersList = ({
+  handleViewUser,
+  handleEditUser,
+  setTotal,
+  page,
+  limit,
+}: any) => {
   const [users, setUsers] = useState<UserDetail[]>([]);
 
   function fetchUsers() {
     const availableUsers = getGlobalItem("allUsersData");
 
-    if (availableUsers?.length > 0) setUsers(availableUsers);
-    else {
+    if (availableUsers?.length > 0) {
+      const paginatedUsers = availableUsers.slice(
+        (page - 1) * +limit,
+        page * (+limit + 0)
+      );
+      setUsers(paginatedUsers);
+      setTotal(availableUsers?.length);
+    } else {
       setUsers([]);
+      setTotal(0);
     }
   }
 
@@ -25,7 +38,7 @@ const AllUsersList = ({ handleViewUser, handleEditUser }: any) => {
     window.addEventListener("storage", fetchUsers);
 
     return () => window.removeEventListener("storage", fetchUsers);
-  }, []);
+  }, [page, limit]);
 
   const handleDeleteUser = (id: String) => {
     const updatedUsers = users.filter((user) => user.id !== id);

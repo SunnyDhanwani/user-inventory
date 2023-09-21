@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import UserModal from "./components/UserModal";
 import AllUsersList from "./components/AllUsersList";
 import { getGlobalItem, setGlobalItem } from "./utils/helper";
+import PaginationBar from "./components/PaginationBar";
 
 function App() {
   const [modalDetails, setModalDetails] = useState({
@@ -11,6 +12,9 @@ function App() {
     userDetails: undefined,
     isView: false,
   });
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(6);
 
   const handleUserModalClose = () => {
     setModalDetails({
@@ -127,6 +131,18 @@ function App() {
       <AllUsersList
         handleViewUser={handleViewUser}
         handleEditUser={handleEditUser}
+        setTotal={setTotal}
+        page={page}
+        limit={limit}
+        setLimit={setLimit}
+      />
+
+      <PaginationBar
+        page={page}
+        limit={limit}
+        total={total}
+        setLimit={setLimit}
+        setPage={setPage}
       />
     </div>
   );
