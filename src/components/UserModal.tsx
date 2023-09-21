@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "./Modal";
 import {
   dispatchStorageEvent,
@@ -6,9 +6,14 @@ import {
   setGlobalItem,
   uniqueID,
 } from "../utils/helper";
-import { UserModalProps } from "../interfaces/interfaces";
+import { UserDetail, UserModalProps } from "../interfaces/interfaces";
 
-const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
+const UserModal = ({
+  isOpen,
+  handleModalClose,
+  userDetails: existingUserDetails,
+  isView = false,
+}: UserModalProps) => {
   const defaultDetails = {
     username: "",
     dob: "",
@@ -16,8 +21,10 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
     food: "",
     hobbies: "",
     gender: "",
+    id: "",
   };
-  const [userDetails, setUserDetails] = useState(defaultDetails);
+
+  const [userDetails, setUserDetails] = useState<UserDetail>(defaultDetails);
   const handleChange = (
     e: React.FormEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -38,18 +45,28 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const newUser = {
-      ...userDetails,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      id: uniqueID(),
-    };
-
     const users = getGlobalItem("allUsersData");
 
-    if (users) setGlobalItem("allUsersData", [...users, newUser]);
-    else setGlobalItem("allUsersData", [newUser]);
+    if (userDetails?.id) {
+      const updatedUsers: any = users.map((el: UserDetail, idx: number) => {
+        if (el.id === userDetails.id) {
+          return userDetails;
+        } else {
+          return el;
+        }
+      });
+      setGlobalItem("allUsersData", updatedUsers);
+    } else {
+      const newUser = {
+        ...userDetails,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        id: uniqueID(),
+      };
 
+      if (users) setGlobalItem("allUsersData", [...users, newUser]);
+      else setGlobalItem("allUsersData", [newUser]);
+    }
     handleClose();
   };
 
@@ -58,6 +75,12 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
     handleModalClose();
     dispatchStorageEvent();
   };
+
+  useEffect(() => {
+    if (existingUserDetails?.id && isOpen) {
+      setUserDetails(existingUserDetails);
+    }
+  }, [existingUserDetails, isOpen]);
 
   return (
     <Modal isModalOpen={isOpen} handleModalClose={handleModalClose}>
@@ -107,6 +130,7 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
                 value={userDetails.username}
                 required
                 title="Please enter user name"
+                disabled={isView}
               />
             </div>
 
@@ -162,6 +186,7 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
                 max={new Date().toISOString().split("T")[0]}
                 required
                 title="Please select dob"
+                disabled={isView}
               />
             </div>
 
@@ -189,6 +214,7 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
                     onChange={handleChange}
                     required
                     title="Please select any one gender"
+                    disabled={isView}
                   />{" "}
                   <label htmlFor="male">MALE</label>
                 </div>
@@ -203,6 +229,7 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
                     type="radio"
                     onChange={handleChange}
                     required
+                    disabled={isView}
                   />{" "}
                   <label htmlFor="female">FEMALE</label>
                 </div>
@@ -237,6 +264,7 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
                 name="food"
                 required
                 title="Please select favourite food"
+                disabled={isView}
               >
                 <option value={""} disabled={true}>
                   Select favourite food
@@ -267,6 +295,7 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
                 value={userDetails.hobbies}
                 style={{ width: "80%" }}
                 rows={5}
+                disabled={isView}
               />
             </div>
           </div>
@@ -281,16 +310,29 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
               right: "24px",
             }}
           >
-            <button
-              type="button"
-              className="orange-btn"
-              onClick={() => handleClose()}
-            >
-              Cancel
-            </button>
-            <button type="submit" className="blue-btn">
-              Submit
-            </button>
+            {isView ? (
+              <button
+                type="button"
+                className="blue-btn"
+                onClick={() => handleClose()}
+              >
+                Close
+              </button>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="orange-btn"
+                  onClick={() => handleClose()}
+                >
+                  Cancel
+                </button>
+
+                <button type="submit" className="blue-btn">
+                  Submit
+                </button>
+              </>
+            )}
           </div>
         </form>
       </div>

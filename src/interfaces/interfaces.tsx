@@ -1,22 +1,26 @@
 export interface UserDetail {
-  username: String;
-  age: number;
-  gender: String | "MALE" | "FEMALE" | "OTHERS";
-  dob: Date;
-  food: String;
-  hobbies?: String;
-  createdAt: Date;
+  username: string;
+  age: string;
+  gender: string | "MALE" | "FEMALE" | "OTHERS";
+  dob: string;
+  food: string;
+  hobbies?: string;
+  createdAt?: Date;
   updatedAt?: Date;
-  id: String;
+  id: string;
 }
 
 export interface UserCardProps {
   handleDeleteUser: Function;
+  handleViewUser: Function;
+  handleEditUser: Function;
 }
 
 export interface UserModalProps {
   isOpen: boolean;
   handleModalClose: Function;
+  userDetails?: UserDetail;
+  isView?: boolean;
 }
 
 export interface ModalProps {

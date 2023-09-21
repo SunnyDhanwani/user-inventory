@@ -1,0 +1,79 @@
+[
+    {
+        "username": "SunnyDhanwani01",
+        "dob": "2018-12-31",
+        "age": "5",
+        "food": "PIZZA",
+        "hobbies": "TS",
+        "gender": "MALE",
+        "createdAt": "2023-09-21T17:37:33.256Z",
+        "updatedAt": "2023-09-21T17:37:33.256Z",
+        "id": 15834726854391
+    },
+    {
+        "username": "SunnyDhanwani02",
+        "dob": "2018-12-31",
+        "age": "5",
+        "food": "PIZZA",
+        "hobbies": "TS",
+        "gender": "MALE",
+        "createdAt": "2023-09-21T17:37:33.256Z",
+        "updatedAt": "2023-09-21T17:37:33.256Z",
+        "id": 15834726854392
+    },
+    {
+        "username": "SunnyDhanwani03",
+        "dob": "2018-12-31",
+        "age": "5",
+        "food": "PIZZA",
+        "hobbies": "TS",
+        "gender": "MALE",
+        "createdAt": "2023-09-21T17:37:33.256Z",
+        "updatedAt": "2023-09-21T17:37:33.256Z",
+        "id": 15834726854393
+    },
+    {
+        "username": "SunnyDhanwani04",
+        "dob": "2018-12-31",
+        "age": "5",
+        "food": "PIZZA",
+        "hobbies": "TS",
+        "gender": "MALE",
+        "createdAt": "2023-09-21T17:37:33.256Z",
+        "updatedAt": "2023-09-21T17:37:33.256Z",
+        "id": 15834726854394
+    },
+    {
+        "username": "Gudiya",
+        "dob": "2018-12-31",
+        "age": "5",
+        "food": "PIZZA",
+        "hobbies": "TS",
+        "gender": "MALE",
+        "createdAt": "2023-09-21T17:37:33.256Z",
+        "updatedAt": "2023-09-21T17:37:33.256Z",
+        "id": 1583472685438
+    },
+    {
+        "username": "Mummy",
+        "dob": "2018-12-31",
+        "age": "5",
+        "food": "PIZZA",
+        "hobbies": "TS",
+        "gender": "MALE",
+        "createdAt": "2023-09-21T17:37:33.256Z",
+        "updatedAt": "2023-09-21T17:37:33.256Z",
+        "id": 1583472685437
+    },
+    {
+        "username": "Papa",
+        "dob": "2018-12-31",
+        "age": "5",
+        "food": "PIZZA",
+        "hobbies": "TS",
+        "gender": "MALE",
+        "createdAt": "2023-09-21T17:37:33.256Z",
+        "updatedAt": "2023-09-21T17:37:33.256Z",
+        "id": 1583472685436
+    }
+]

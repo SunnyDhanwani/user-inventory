@@ -8,7 +8,7 @@ import { UserDetail } from "../interfaces/interfaces";
 import UserCard from "./UserCard";
 import UsersEmptyState from "./UsersEmptyState";
 
-const AllUsersList = () => {
+const AllUsersList = ({ handleViewUser, handleEditUser }: any) => {
   const [users, setUsers] = useState<UserDetail[]>([]);
 
   function fetchUsers() {
@@ -58,6 +58,8 @@ const AllUsersList = () => {
               createdAt={user.createdAt}
               id={user.id}
               handleDeleteUser={handleDeleteUser}
+              handleViewUser={handleViewUser}
+              handleEditUser={handleEditUser}
             />
           );
         })

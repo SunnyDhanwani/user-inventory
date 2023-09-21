@@ -11,6 +11,8 @@ const UserCard = ({
   createdAt,
   id,
   handleDeleteUser,
+  handleViewUser,
+  handleEditUser,
 }: UserDetail & UserCardProps) => {
   return (
     <div
@@ -44,9 +46,9 @@ const UserCard = ({
             height: "30px",
             width: "30px",
             backgroundColor:
-              age > 0 && age < 25
+              +age >= 0 && +age < 25
                 ? "#1A7318"
-                : age >= 25 && age < 50
+                : +age >= 25 && +age < 50
                 ? "#F41B9E"
                 : "#FEA41D",
             borderRadius: "100%",
@@ -93,8 +95,12 @@ const UserCard = ({
         <button className="orange-btn" onClick={() => handleDeleteUser(id)}>
           Delete
         </button>
-        <button className="blue-btn">View</button>
-        <button className="blue-btn">Edit</button>
+        <button className="blue-btn" onClick={() => handleViewUser(id)}>
+          View
+        </button>
+        <button className="blue-btn" onClick={() => handleEditUser(id)}>
+          Edit
+        </button>
       </div>
     </div>
   );

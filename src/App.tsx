@@ -1,25 +1,108 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import UserModal from "./components/UserModal";
 import AllUsersList from "./components/AllUsersList";
+import { getGlobalItem, setGlobalItem } from "./utils/helper";
 
 function App() {
-  const [modalDetails, setModalDetails] = useState({ isOpen: false });
+  const [modalDetails, setModalDetails] = useState({
+    isOpen: false,
+    userDetails: undefined,
+    isView: false,
+  });
 
   const handleUserModalClose = () => {
-    setModalDetails({ ...modalDetails, isOpen: false });
+    setModalDetails({
+      ...modalDetails,
+      isOpen: false,
+      isView: false,
+      userDetails: undefined,
+    });
   };
 
-  const handleUserModalOpen = () => {
-    setModalDetails({ ...modalDetails, isOpen: true });
+  const handleUserModalOpen = (id: any, isView: boolean = false) => {
+    if (id) {
+      const allUsers = getGlobalItem("allUsersData");
+      const user = allUsers.find((el: any) => {
+        if (el.id === id) return el;
+      });
+
+      setModalDetails({
+        ...modalDetails,
+        isOpen: true,
+        userDetails: user,
+        isView,
+      });
+    } else {
+      setModalDetails({ ...modalDetails, isOpen: true, isView });
+    }
   };
+
+  const handleViewUser = (id: any) => {
+    handleUserModalOpen(id, true);
+  };
+
+  const handleEditUser = (id: any) => {
+    handleUserModalOpen(id);
+  };
+
+  // useEffect(() => {
+  //   setGlobalItem("allUsersData", [
+  //     {
+  //       username: "SunnyDhanwani",
+  //       dob: "2018-12-31",
+  //       age: "5",
+  //       food: "PIZZA",
+  //       hobbies: "TS",
+  //       gender: "MALE",
+  //       createdAt: "2023-09-21T17:37:33.256Z",
+  //       updatedAt: "2023-09-21T17:37:33.256Z",
+  //       id: 1583472685439,
+  //     },
+  //     {
+  //       username: "Gudiya",
+  //       dob: "2018-12-31",
+  //       age: "5",
+  //       food: "PIZZA",
+  //       hobbies: "TS",
+  //       gender: "MALE",
+  //       createdAt: "2023-09-21T17:37:33.256Z",
+  //       updatedAt: "2023-09-21T17:37:33.256Z",
+  //       id: 1583472685438,
+  //     },
+  //     {
+  //       username: "Mummy",
+  //       dob: "2018-12-31",
+  //       age: "5",
+  //       food: "PIZZA",
+  //       hobbies: "TS",
+  //       gender: "MALE",
+  //       createdAt: "2023-09-21T17:37:33.256Z",
+  //       updatedAt: "2023-09-21T17:37:33.256Z",
+  //       id: 1583472685437,
+  //     },
+  //     {
+  //       username: "Papa",
+  //       dob: "2018-12-31",
+  //       age: "5",
+  //       food: "PIZZA",
+  //       hobbies: "TS",
+  //       gender: "MALE",
+  //       createdAt: "2023-09-21T17:37:33.256Z",
+  //       updatedAt: "2023-09-21T17:37:33.256Z",
+  //       id: 1583472685436,
+  //     },
+  //   ]);
+  // }, []);
 
   return (
     <div className="App">
       <UserModal
         isOpen={modalDetails.isOpen}
         handleModalClose={handleUserModalClose}
+        userDetails={modalDetails?.userDetails}
+        isView={modalDetails.isView}
       />
 
       <Navbar />
@@ -41,7 +124,10 @@ function App() {
         <div></div>
       </div>
 
-      <AllUsersList />
+      <AllUsersList
+        handleViewUser={handleViewUser}
+        handleEditUser={handleEditUser}
+      />
     </div>
   );
 }
