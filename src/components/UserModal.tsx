@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
-import { getGlobalItem, setGlobalItem } from "../utils/helper";
+import {
+  dispatchStorageEvent,
+  getGlobalItem,
+  setGlobalItem,
+  uniqueID,
+} from "../utils/helper";
 import { UserModalProps } from "../interfaces/interfaces";
 
 const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
@@ -37,7 +42,9 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
       ...userDetails,
       createdAt: new Date(),
       updatedAt: new Date(),
+      id: uniqueID(),
     };
+
     const users = getGlobalItem("allUsersData");
 
     if (users) setGlobalItem("allUsersData", [...users, newUser]);
@@ -49,7 +56,7 @@ const UserModal = ({ isOpen, handleModalClose }: UserModalProps) => {
   const handleClose = () => {
     setUserDetails(defaultDetails);
     handleModalClose();
-    window.dispatchEvent(new Event("storage"));
+    dispatchStorageEvent();
   };
 
   return (

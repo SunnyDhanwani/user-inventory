@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { getGlobalItem } from "../utils/helper";
-import { UserCardProps } from "../interfaces/interfaces";
+import {
+  dispatchStorageEvent,
+  getGlobalItem,
+  setGlobalItem,
+} from "../utils/helper";
+import { UserDetail } from "../interfaces/interfaces";
 import UserCard from "./UserCard";
 import UsersEmptyState from "./UsersEmptyState";
 
 const AllUsersList = () => {
-  const [users, setUsers] = useState<UserCardProps[]>([]);
+  const [users, setUsers] = useState<UserDetail[]>([]);
 
   function fetchUsers() {
     const availableUsers = getGlobalItem("allUsersData");
@@ -22,6 +26,12 @@ const AllUsersList = () => {
 
     return () => window.removeEventListener("storage", fetchUsers);
   }, []);
+
+  const handleDeleteUser = (id: String) => {
+    const updatedUsers = users.filter((user) => user.id !== id);
+    setGlobalItem("allUsersData", updatedUsers);
+    dispatchStorageEvent();
+  };
 
   if (users?.length === 0) return <UsersEmptyState />;
   return (
@@ -44,8 +54,10 @@ const AllUsersList = () => {
               dob={user.dob}
               food={user.food}
               hobbies={user.hobbies}
-              key={user.createdAt?.toString()}
+              key={`${user.id}`}
               createdAt={user.createdAt}
+              id={user.id}
+              handleDeleteUser={handleDeleteUser}
             />
           );
         })

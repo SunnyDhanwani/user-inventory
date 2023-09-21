@@ -20,3 +20,11 @@ export function clearGlobalItem(key: string) {
 export function clearAllGlobalItem() {
   window.localStorage.clear();
 }
+
+export function uniqueID() {
+  return Math.floor(Math.random() * Date.now());
+}
+
+export function dispatchStorageEvent() {
+  window.dispatchEvent(new Event("storage"));
+}

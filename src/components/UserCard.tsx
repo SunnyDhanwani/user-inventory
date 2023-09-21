@@ -1,5 +1,5 @@
 import React from "react";
-import { UserCardProps } from "../interfaces/interfaces";
+import { UserCardProps, UserDetail } from "../interfaces/interfaces";
 
 const UserCard = ({
   username,
@@ -9,7 +9,9 @@ const UserCard = ({
   food,
   hobbies,
   createdAt,
-}: UserCardProps) => {
+  id,
+  handleDeleteUser,
+}: UserDetail & UserCardProps) => {
   return (
     <div
       className="user-card"
@@ -88,7 +90,9 @@ const UserCard = ({
           padding: "20px 30px",
         }}
       >
-        <button className="orange-btn">Delete</button>
+        <button className="orange-btn" onClick={() => handleDeleteUser(id)}>
+          Delete
+        </button>
         <button className="blue-btn">View</button>
         <button className="blue-btn">Edit</button>
       </div>

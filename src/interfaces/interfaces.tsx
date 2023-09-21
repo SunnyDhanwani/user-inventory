@@ -1,4 +1,4 @@
-export interface UserCardProps {
+export interface UserDetail {
   username: String;
   age: number;
   gender: String | "MALE" | "FEMALE" | "OTHERS";
@@ -7,6 +7,11 @@ export interface UserCardProps {
   hobbies?: String;
   createdAt: Date;
   updatedAt?: Date;
+  id: String;
+}
+
+export interface UserCardProps {
+  handleDeleteUser: Function;
 }
 
 export interface UserModalProps {
