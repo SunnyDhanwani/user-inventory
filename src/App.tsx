@@ -1,24 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import UserModal from "./components/UserModal";
+import AllUsersList from "./components/AllUsersList";
 
 function App() {
+  const [modalDetails, setModalDetails] = useState({ isOpen: false });
+
+  const handleUserModalClose = () => {
+    setModalDetails({ ...modalDetails, isOpen: false });
+  };
+
+  const handleUserModalOpen = () => {
+    setModalDetails({ ...modalDetails, isOpen: true });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserModal
+        isOpen={modalDetails.isOpen}
+        handleModalClose={handleUserModalClose}
+      />
+
+      <Navbar />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "20px 90px",
+        }}
+      >
+        <div style={{ fontSize: "28px" }}>LIST OF USERS</div>
+        <button onClick={handleUserModalOpen} className="blue-btn">
+          ADD USER
+        </button>
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div></div>
+      </div>
+
+      <AllUsersList />
     </div>
   );
 }
