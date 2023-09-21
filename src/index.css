@@ -13,16 +13,6 @@ code {
     monospace;
 }
 
-
-
-.text-white {
-  color: white;
-}
-
-.text-24 {
-  font-size: 24px;
-}
-
 .ellipsis {
   white-space: nowrap;
   overflow: hidden;
