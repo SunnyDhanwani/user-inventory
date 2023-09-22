@@ -23,8 +23,8 @@ const AllUsersList = ({
 
     if (availableUsers?.length > 0) {
       const paginatedUsers = availableUsers.slice(
-        (page - 1) * +limit,
-        page * (+limit + 0)
+        (+page - 1) * +limit,
+        +page * +limit
       );
       setUsers(paginatedUsers);
       setTotal(availableUsers?.length);
