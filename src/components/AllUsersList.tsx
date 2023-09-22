@@ -42,7 +42,11 @@ const AllUsersList = ({
   }, [page, limit]);
 
   const handleDeleteUser = (id: String) => {
-    const updatedUsers = users.filter((user) => user.id !== id);
+    const availableUsers = getGlobalItem("allUsersData");
+    const updatedUsers = availableUsers.filter((user: any, idx: number) => {
+      if (user.id !== id) return user;
+    });
+
     setGlobalItem("allUsersData", updatedUsers);
     dispatchStorageEvent();
   };

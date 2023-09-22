@@ -80,6 +80,8 @@ const UserModal = ({
   useEffect(() => {
     if (existingUserDetails?.id && isOpen) {
       setUserDetails(existingUserDetails);
+    } else {
+      setUserDetails(defaultDetails);
     }
   }, [existingUserDetails, isOpen]);
 

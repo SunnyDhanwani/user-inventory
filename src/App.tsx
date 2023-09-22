@@ -29,7 +29,7 @@ function App() {
   const handleUserModalOpen = (id: any = "", isView: boolean = false) => {
     if (id) {
       const allUsers = getGlobalItem("allUsersData");
-      const user = allUsers.find((el: any) => {
+      const user = allUsers.some((el: any) => {
         if (el.id === id) return el;
       });
 
@@ -40,7 +40,12 @@ function App() {
         isView,
       });
     } else {
-      setModalDetails({ ...modalDetails, isOpen: true, isView });
+      setModalDetails({
+        ...modalDetails,
+        isOpen: true,
+        isView: false,
+        userDetails: undefined,
+      });
     }
   };
 
@@ -106,7 +111,7 @@ function App() {
       <UserModal
         isOpen={modalDetails.isOpen}
         handleModalClose={handleUserModalClose}
-        userDetails={modalDetails?.userDetails}
+        userDetails={modalDetails?.userDetails || undefined}
         isView={modalDetails.isView}
       />
 
